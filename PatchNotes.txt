@@ -1,0 +1,71 @@
+Date: 4/3/18
+Goal: Tilt Floor & Ball
+Strategy: Change ball to character
+Fixes:
+    - Floor mesh has collision boundary "26DOP Simple Collision", ball no longer falls through floor.
+Bugs:
+    - MainCamera doesn't receive automatic input
+    - "Play" and "Launch" start game at 0,0,0 coord pts
+    - No collision with walls inside of floor mesh
+    - Floor does not receive input from device, no tilt
+Notes:
+    - Attempted to change ball to character. Created new character, attempted to change static mesh. Characters have a skeletal mesh that can only be designed through character rigging software. The static mesh currently being used for this ball cannot be put on a character. Did not find any free skeletal meshes relevant to a ball in the Unreal Engine marketplace.
+    - There is a function to convert C++ class to bp. After editing the C++ code (removed spring arm, camera, and jump functions). With the bp, I can change the material and size of the ball.
+    - the floor and ball pawn bps were placed into the world.
+        - ball material set to chrome, changed defaults (block input, stationary mobility). Placed at 0,-430,50
+        - floor placed at 0,0,0. Removed spring arm + camera from bp
+    - Changed GameMode default pawn to NONE, this way neither the floor or the ball spawn duplicate.
+    - Created spring arm and camera bp to be used as "Main Camera"
+    - Removed PlayerStart that used to spawn the default pawn based on GameMode.
+GitHub update:
+    - Created new repos, draggged active project folder from documents into new repos. Attempted to add, commit and push the folder to github. Hit error (error: failed to push some refs to 'https://github.com/adrialarmijo/GameDesign'), now current status is: Changes not staged for commit: (use "git add/rm <file>..." to update what will be committed) (use "git checkout -- <file>..." to discard changes in working directory), with red files since they have been updated since this morning when the repos was created.
+
+Date: 4/5/18
+Goal: Tilt floor & ball
+Strategy: Fix floor input and main camera
+Fixes:
+Bugs:
+Notes:
+Github Updates:
+    None. No work done on this error. git status is the same.
+
+
+
+Date: 4/9/18 
+In-Class Help: create a floor c++ code for an adjusted static mesh w/ proper collision bounds. OR add an invisible bounding box to floor and walls
+
+GitHub Steps:
+	1. Make a copy of all work, backup just in case.
+	2. Delete repos on GitHub. 
+	3. Delete the .git directory, this destroys the repos.
+		i. navigate in terminal
+		ii. rm -rf .git file in directory
+	4. git init the project
+		i. create a git ignore for all items to ignore
+		ii. git add . (adds all except for ignored)
+		iii. git commit
+		iv. git status
+	5. go to GitHub and make a new repos, do not add anything.
+	6. git remote add origin url from step 5 via terminal
+	7. git push origin master
+
+Date: 4/10/18
+Goal: Place ball on a tilting platform
+Strategy: Focus on input for floor
+Fixes: App launches to game, camera is on ball.
+Notes:
+	The ball's mesh doesn't appear to have any special collision settings. We are currently using the ball_bp that was created from the c++ code. The c++ ball pawn is not currently being used. This is so features can be easily edited. 
+	Characters do not work for this project because the skeletal mesh needs to be movable and that would mean the floor would continuously fall in through the map. So the pawn class needs to be implemented w/ a collision bound or bounding box to be used in game.
+	Brought back original ball movement to ball code. Decided to change input from floor to ball. Launched project on iPad and launch failed.
+
+Date: 4/12/18
+Goal: Apply Tilt to Ball
+Strategy: Debug current blueprint on ball
+Notes:
+	I looked up why the iPad would not load after a splash screen. The internet said it could be because the iPad isn't loading the textures or the iPad was updating and UE4 isn't loading an updated version. So I changed the Platform settings for iOS to set the minimum build version to 11 and forced a medium texture override. The game launches successfully on the iPad. Beginning blueprint debugging now. I changed the input from "Get Player Controller-> Get Motion Control->Break Vector to Tilt-> Break Vector. After launching on iPad the editor crashed error "Failed automation". I closed the program and re-verified the engine. Opened the game again to rebuild it, that seemed to work past that error, but no ball movement. I found a blueprint online that is very long but also calibrates the ball sensitivity, so I am drawing it out and will add it in after.
+
+Date: 4/15/18
+Goal: Apply mobile controls to ball
+Strategy: Get similar controls from mobile ball project.
+Notes: 
+	Ball currently jumps when tapped. New goal: make the world around the ball, don't focus on the ball rn.
